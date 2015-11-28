@@ -11,6 +11,12 @@
     tools:context="hack.dit.arcoupon.GpsActivity">
 
     <TextView
+        android:id="@+id/Result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp" />
+
+    <TextView
         android:id="@+id/Provider"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
