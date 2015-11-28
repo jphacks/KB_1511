@@ -2,14 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hack.dit.arcoupon" >
 
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="19" />
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="com.sonyericsson.extras.liveware.aef.EXTENSION_PERMISSION" />
     <uses-permission android:name="com.sony.smarteyeglass.permission.SMARTEYEGLASS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -35,7 +39,6 @@
             android:label="@string/title_activity_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -49,7 +52,7 @@
         </service>
         -->
         <!--
-        <receiver android:name="hack.dit.arcoupon.HelloWorldExtensionReceiver" >
+        <receiver android:name="hack.dit.arcoupon.ARCouponExtensionReceiver" >
             <intent-filter>
         -->
                 <!-- Generic extension intents.
