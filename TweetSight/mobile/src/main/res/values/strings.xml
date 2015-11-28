@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TweetSight</string>
+    <string name="search_button">search!</string>
+    <string name="hint">#jphacks2015</string>
+    <string name="recommend_title">おすすめタグ</string>
+    <string name="help_text">タグを入力してください</string>
 </resources>
