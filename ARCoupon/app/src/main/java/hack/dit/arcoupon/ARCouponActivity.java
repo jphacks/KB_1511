@@ -31,7 +31,9 @@ public class ARCouponActivity extends Activity {
             }
         });
         */
+
         startExtension();
+
         /*
          * Check if activity was started with a message in the intent
          * If there is a message, show it as a Toast message
