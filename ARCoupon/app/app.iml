@@ -138,5 +138,6 @@
     <orderEntry type="library" exported="" name="play-services-nearby-8.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-fitness-8.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-panorama-8.3.0" level="project" />
+    <orderEntry type="module" module-name="SmartExtensionAPI" exported="" />
   </component>
 </module>
