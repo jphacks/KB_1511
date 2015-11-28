@@ -5,11 +5,19 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
@@ -19,8 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class GpsActivity extends AppCompatActivity implements LocationListener {
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
+    private final String TAG = "results";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +63,9 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
 
         // LocationListenerを登録
         mLocationManager.requestLocationUpdates(provider, 0, 0, this);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -61,7 +78,7 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
         //TextView tv_lng = (TextView) findViewById(R.id.Longitude);
         //tv_lng.setText("Latitude:" + location.getLongitude());
 
-        String result = null;
+        final String[] result = {null};
 
         Request request = new Request.Builder()
                 .url("http://weather.livedoor.com/forecast/webservice/json/v1?city=400040")
@@ -71,6 +88,30 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
         // クライアントオブジェクトを作って
         OkHttpClient client = new OkHttpClient();
 
+
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Request request, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Response response) throws IOException {
+                result[0] = response.body().string();
+                Log.e(TAG, result[0]);
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        TextView tv_provider = (TextView) findViewById(R.id.Result);
+                        tv_provider.setText(result[0]);
+                    }
+                });
+
+            }
+        });
+
+        /*
         // リクエストして結果を受け取って
         try {
             Response response = client.newCall(request).execute();
@@ -82,6 +123,7 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
         Log.d("result", result);
         TextView tv_provider = (TextView) findViewById(R.id.Result);
         tv_provider.setText(result);
+        */
     }
 
     @Override
@@ -102,4 +144,43 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
 
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Gps Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://hack.dit.arcoupon/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Gps Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app deep link URI is correct.
+                Uri.parse("android-app://hack.dit.arcoupon/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
+    }
 }
