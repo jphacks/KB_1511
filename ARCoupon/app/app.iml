@@ -139,5 +139,7 @@
     <orderEntry type="library" exported="" name="play-services-fitness-8.3.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-panorama-8.3.0" level="project" />
     <orderEntry type="module" module-name="SmartExtensionAPI" exported="" />
+    <orderEntry type="module" module-name="SmartExtensionUtils" exported="" />
+    <orderEntry type="module" module-name="SmartEyeglassAPI" exported="" />
   </component>
 </module>
