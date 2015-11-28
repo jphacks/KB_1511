@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ARCoupon.iml" filepath="$PROJECT_DIR$/ARCoupon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SmartExtensionAPI/SmartExtensionAPI.iml" filepath="$PROJECT_DIR$/../SmartExtensionAPI/SmartExtensionAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SmartExtensionUtils/SmartExtensionUtils.iml" filepath="$PROJECT_DIR$/../SmartExtensionUtils/SmartExtensionUtils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SmartEyeglassAPI/SmartEyeglassAPI.iml" filepath="$PROJECT_DIR$/../SmartEyeglassAPI/SmartEyeglassAPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
