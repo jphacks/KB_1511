@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hack.dit.tweetsight">
 
+    <uses-permission android:name="com.sonyericsson.extras.liveware.aef.EXTENSION_PERMISSION" />
+    <uses-permission android:name="com.sony.smarteyeglass.permission.SMARTEYEGLASS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
