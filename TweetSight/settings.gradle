@@ -1,4 +1,0 @@
-includeFlat 'SmartExtensionAPI'
-includeFlat 'SmartExtensionUtils'
-includeFlat 'SmartEyeglassAPI'
-include ':mobile', ':glass'
