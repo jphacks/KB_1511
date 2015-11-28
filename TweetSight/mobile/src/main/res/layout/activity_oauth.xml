@@ -12,21 +12,21 @@
 
     <TextView
         android:text="@string/oauth_text1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="@dimen/layout_margin_bottom" />
 
     <TextView
         android:text="@string/oauth_text2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="@dimen/layout_margin_bottom" />
 
     <TextView
         android:text="@string/oauth_text3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="@dimen/layout_margin_bottom" />
