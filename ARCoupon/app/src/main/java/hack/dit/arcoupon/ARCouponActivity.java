@@ -21,7 +21,8 @@ public class ARCouponActivity extends Activity {
         setContentView(R.layout.activity_maps);
 
         // When button is clicked, run the SmartEyeglass app
-        Button btnGlass = (Button) findViewById(R.id.btnglass);
+        //Button btnGlass = (Button) findViewById(R.id.btnglass);
+        /*
         btnGlass.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -29,7 +30,8 @@ public class ARCouponActivity extends Activity {
                 startExtension();
             }
         });
-
+        */
+        startExtension();
         /*
          * Check if activity was started with a message in the intent
          * If there is a message, show it as a Toast message
