@@ -43,6 +43,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MapsActivity" >
+        </activity>
 
         <service android:name="hack.dit.arcoupon.ARCouponExtensionService" />
         <service android:name="com.sonyericsson.extras.liveware.extension.util.TunnelService" >
