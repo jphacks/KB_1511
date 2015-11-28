@@ -84,8 +84,8 @@ public class ARCouponControl extends ControlExtension{
      *  Update the display with the dynamic message text.
      */
     private void updateLayout() {
-        showLayout(R.layout.layout, null);
-        sendText(R.id.btn_update_this, "Hello World!");
+        showLayout(R.layout.activity_maps, null);
+        //sendText(R.id.btn_update_this, "Hello World!");
     }
 
     /**
