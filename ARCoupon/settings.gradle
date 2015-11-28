@@ -1,1 +1,4 @@
+includeFlat 'SmartExtensionAPI'
+includeFlat 'SmartExtensionUtils'
+includeFlat 'SmartEyeglassAPI'
 include ':app'
