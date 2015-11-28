@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  domain: au-syd.mybluemix.net
+  name: ARCoupon
+  host: arcoupon
+  disk_quota: 1024M
+  buildpack: php_buildpack
