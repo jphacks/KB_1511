@@ -1,8 +1,43 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
-    <body>
-        フロントページ（プロダクトの説明など）
-    </body>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クーポン登録</title>
+  <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary" role="banner">
+    <div class="mdl-layout--large-screen-only mdl-layout__header-row"><h3>ARCoupon</h3></div>
+  </header>
+  <main class="mdl-layout__content">
+  <form action="" method="" id="sendForm">
+      <h4>情報を入力してください</h4>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="shopName" name="shop_name">
+        <label class="mdl-textfield__label" for="shopName">お店の名前</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="address" name="address">
+        <label class="mdl-textfield__label" for="address">お店の住所</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows= "3" id="detail" name="detail" ></textarea>
+        <label class="mdl-textfield__label" for="detail">クーポンの内容</label>
+      </div>
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" id="sendButton">送信</button>
+    </form>
+    <footer class="mdl-mini-footer">
+      <div class="mdl-mini-footer__left-section">
+        <div class="mdl-logo">
+          &copy; 2015 ARCoupon.
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
