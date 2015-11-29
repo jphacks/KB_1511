@@ -84,9 +84,13 @@ public class ARCouponControl extends ControlExtension{
      *  Update the display with the dynamic message text.
      */
     private void updateLayout() {
-        showLayout(R.layout.layout, null);
-        sendText(R.id.btn_update_this1, "店舗名");
-        sendText(R.id.btn_update_this2, "クーポン詳細");
+        if(ARCouponActivity.shop_name != null) {
+            showLayout(R.layout.layout, null);
+            sendText(R.id.btn_update_this1, "店舗名　：　" + ARCouponActivity.shop_name);
+            sendText(R.id.btn_update_this2, "クーポン　：　" + ARCouponActivity.detail);
+        }else{
+            showLayout(R.layout.layout, null);
+        }
     }
 
     /**
@@ -99,5 +103,4 @@ public class ARCouponControl extends ControlExtension{
         utils.showDialogMessage(message,
                 SmartEyeglassControl.Intents.DIALOG_MODE_TIMEOUT);
     }
-
 }

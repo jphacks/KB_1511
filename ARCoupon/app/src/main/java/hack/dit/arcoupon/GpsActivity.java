@@ -1,65 +1,45 @@
 package hack.dit.arcoupon;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.sonyericsson.extras.liveware.aef.registration.Registration;
-
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.app.FragmentActivity;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import android.os.Handler;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * Created by kiyomaru on 15/11/29.
- */
-public class ARCouponActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
 
-    private GoogleMap mMap;
+public class GpsActivity extends AppCompatActivity implements LocationListener {
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
     private GoogleApiClient client;
-    public static String shop_name = null;
-    public static String detail = null;
-    public static Double lat = null;
-    public static Double lng = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_gps);
 
@@ -91,32 +71,6 @@ public class ARCouponActivity extends FragmentActivity implements OnMapReadyCall
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-
-        // 緯度経度の登録
-        LatLng location = new LatLng(34.694524, 135.195996);
-        // カメラポジション設定
-        CameraPosition cameraPos = new CameraPosition.Builder().target(location).zoom(18.0f).bearing(0).build();
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPos));
-        // マーカーを作成
-        Marker marker = mMap.addMarker(new MarkerOptions().position(location).title("お店の名前").snippet("クーポンの内容"));
-        // インフォウィンドウ表示
-        marker.showInfoWindow();
-    }
-
-    /**
-     *  Start the app with the message "Hello SmartEyeglass"
-     */
-    public void startExtension() {
-        // Check ExtensionService is ready and referenced
-        if (ARCouponExtensionService.Object != null) {
-            ARCouponExtensionService.Object
-                    .sendMessageToExtension("Hello SmartEyeglass");
-        }
-    }
-
-    @Override
     public void onLocationChanged(Location location) {
         // 緯度の表示
         //TextView tv_lat = (TextView) findViewById(R.id.Latitude);
@@ -127,8 +81,8 @@ public class ARCouponActivity extends FragmentActivity implements OnMapReadyCall
         //tv_lng.setText("Latitude:" + location.getLongitude());
 
         String result = null;
-        lat = location.getLatitude();
-        lng = location.getLongitude();
+        Double lat = location.getLatitude();
+        Double lng = location.getLongitude();
 
         Request request = new Request.Builder()
                 .url("http://www.geocoding.jp/?q=lat&lng")
@@ -163,10 +117,10 @@ public class ARCouponActivity extends FragmentActivity implements OnMapReadyCall
                         //TextView tv_provider = (TextView) findViewById(R.id.Result);
                         //tv_provider.setText(result);
 
-                        shop_name = null;
-                        detail = null;
-                        lat = null;
-                        lng = null;
+                        String shop_name = null;
+                        String detail = null;
+                        Double lat = null;
+                        Double lng = null;
                         String jsonData = "{\"shop_name\" : \"お店の名前\",\"detail\" : \"クーポンの内容\",\"lat\" : 48.858205,\"lng\" : 2.294359}";
 
                         try {
@@ -192,16 +146,19 @@ public class ARCouponActivity extends FragmentActivity implements OnMapReadyCall
     @Override
     public void onProviderDisabled(String provider) {
         // TODO Auto-generated method stub
+
     }
 
     @Override
     public void onProviderEnabled(String provider) {
         // TODO Auto-generated method stub
+
     }
 
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         // TODO Auto-generated method stub
+
     }
 
     @Override

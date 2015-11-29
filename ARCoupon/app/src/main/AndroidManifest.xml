@@ -42,7 +42,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".GpsActivity" >
+        </activity>
 
         <service android:name="hack.dit.arcoupon.ARCouponExtensionService" />
         <service android:name="com.sonyericsson.extras.liveware.extension.util.TunnelService" >
