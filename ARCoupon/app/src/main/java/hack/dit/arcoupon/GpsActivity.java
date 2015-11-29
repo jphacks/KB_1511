@@ -21,6 +21,10 @@ import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
 import android.os.Handler;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,9 +81,11 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
         //tv_lng.setText("Latitude:" + location.getLongitude());
 
         String result = null;
+        Double lat = location.getLatitude();
+        Double lng = location.getLongitude();
 
         Request request = new Request.Builder()
-                .url("http://weather.livedoor.com/forecast/webservice/json/v1?city=400040")
+                .url("http://www.geocoding.jp/?q=lat&lng")
                 .get()
                 .build();
 
@@ -104,12 +110,31 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
             @Override
             public void onResponse(Response response) throws IOException {
                 final String result = response.body().string();
-                Log.d("result", result);
+
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
                         TextView tv_provider = (TextView) findViewById(R.id.Result);
-                        tv_provider.setText(result);
+                        //tv_provider.setText(result);
+
+                        String shop_name = null;
+                        String detail = null;
+                        Double lat = null;
+                        Double lng = null;
+                        String jsonData = "{\"shop_name\" : \"お店の名前\",\"detail\" : \"クーポンの内容\",\"lat\" : 48.858205,\"lng\" : 2.294359}";
+
+                        try {
+                            JSONObject json = new JSONObject(jsonData);
+                            shop_name = json.getString("shop_name");
+                            detail = json.getString("detail");
+                            lat = json.getDouble("lat");
+                            lng = json.getDouble("lng");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        tv_provider.setText(shop_name + detail + lat + lng);
+
                     }
                 });
             }

@@ -42,8 +42,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".MapsActivity" >
+        <activity android:name=".GpsActivity" >
         </activity>
 
         <service android:name="hack.dit.arcoupon.ARCouponExtensionService" />
