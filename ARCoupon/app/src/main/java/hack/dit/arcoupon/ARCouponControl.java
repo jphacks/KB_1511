@@ -85,8 +85,8 @@ public class ARCouponControl extends ControlExtension{
      */
     private void updateLayout() {
         showLayout(R.layout.layout, null);
-        sendText(R.id.btn_update_this1, "店舗名");
-        sendText(R.id.btn_update_this2, "クーポン詳細");
+        sendText(R.id.btn_update_this1, "ミント神戸");
+        sendText(R.id.btn_update_this2, "【タイムセール！！】全品10%OFF!!");
     }
 
     /**

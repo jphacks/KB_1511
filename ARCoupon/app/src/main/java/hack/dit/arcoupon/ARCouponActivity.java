@@ -48,7 +48,7 @@ public class ARCouponActivity extends FragmentActivity implements OnMapReadyCall
         CameraPosition cameraPos = new CameraPosition.Builder().target(location).zoom(18.0f).bearing(0).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPos));
         // マーカーを作成
-        Marker marker = mMap.addMarker(new MarkerOptions().position(location).title("お店の名前").snippet("クーポンの内容"));
+        Marker marker = mMap.addMarker(new MarkerOptions().position(location).title("ミント神戸").snippet("【タイムセール！！】全品10%OFF!!"));
         // インフォウィンドウ表示
         marker.showInfoWindow();
     }
