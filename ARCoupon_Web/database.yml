@@ -1,0 +1,7 @@
+production:
+  adapter: mysql2
+  database: arcoupon_db
+  host: localhost
+  username: root
+  password: dit_hack
+  encoding: utf8
