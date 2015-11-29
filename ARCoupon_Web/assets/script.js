@@ -11,5 +11,15 @@ $(function(){
     });
     var json = JSON.stringify(param);
 
+    $.ajax({
+      url: '/coupons',
+      type:'POST',
+      dataType: 'json',
+      data : json
+    }).done(function() {
+      console.log("OK");
+    }).fail(function( jqXHR, textStatus ) {
+      alert( "Request failed: " + textStatus );
+    });
   });
 });
