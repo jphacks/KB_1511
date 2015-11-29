@@ -9,6 +9,19 @@ $(function(){
     $(form.serializeArray()).each(function(i, v) {
       param[v.name] = v.value;
     });
+
+    var url = 'http://maps.google.com/maps/api/geocode/json?address=' + param['address'] + '&sensor=false' ;
+
+    $.ajax({
+      url: url,
+      type:'GET'
+    }).done(function(res) {
+      param['lat'] = res['results']['geometry']['bounds']['northeast']['lat'];
+      param['lng'] = res['results']['geometry']['bounds']['northeast']['lng'];
+    }).fail(function( jqXHR, textStatus ) {
+      alert( "Request failed: " + textStatus );
+    });
+
     var json = JSON.stringify(param);
 
     $.ajax({
@@ -17,7 +30,7 @@ $(function(){
       dataType: 'json',
       data : json
     }).done(function() {
-      console.log("OK");
+      console.log( "ok");
     }).fail(function( jqXHR, textStatus ) {
       alert( "Request failed: " + textStatus );
     });
