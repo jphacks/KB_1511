@@ -36,12 +36,12 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client2;
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gps);
+        //setContentView(R.layout.activity_gps);
 
         // LocationManagerを取得
         LocationManager mLocationManager =
@@ -67,7 +67,7 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
         mLocationManager.requestLocationUpdates(provider, 0, 0, this);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client2 = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -114,7 +114,7 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
-                        TextView tv_provider = (TextView) findViewById(R.id.Result);
+                        //TextView tv_provider = (TextView) findViewById(R.id.Result);
                         //tv_provider.setText(result);
 
                         String shop_name = null;
@@ -133,7 +133,7 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
                             e.printStackTrace();
                         }
 
-                        tv_provider.setText(shop_name + detail + lat + lng);
+                        //tv_provider.setText(shop_name + detail + lat + lng);
 
                     }
                 });
@@ -164,10 +164,9 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
     @Override
     public void onStart() {
         super.onStart();
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client2.connect();
+        client.connect();
         Action viewAction = Action.newAction(
                 Action.TYPE_VIEW, // TODO: choose an action type.
                 "Gps Page", // TODO: Define a title for the content shown.
@@ -178,13 +177,12 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
                 // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://hack.dit.arcoupon/http/host/path")
         );
-        AppIndex.AppIndexApi.start(client2, viewAction);
+        AppIndex.AppIndexApi.start(client, viewAction);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(
@@ -197,7 +195,7 @@ public class GpsActivity extends AppCompatActivity implements LocationListener {
                 // TODO: Make sure this auto-generated app deep link URI is correct.
                 Uri.parse("android-app://hack.dit.arcoupon/http/host/path")
         );
-        AppIndex.AppIndexApi.end(client2, viewAction);
-        client2.disconnect();
+        AppIndex.AppIndexApi.end(client, viewAction);
+        client.disconnect();
     }
 }
