@@ -1,0 +1,13 @@
+CREATE DATABASE IF NOT EXISTS arcoupon_db;
+USE arcoupon_db
+
+create table coupons (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  shop_name VARCHAR(255) NOT NULL,
+  lat DOUBLE NOT NULL,
+  lng DOUBLE NOT NULL,
+  detail VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL,
+  PRIMARY KEY(id)
+);
