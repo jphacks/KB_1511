@@ -2,11 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hack.dit.arcoupon" >
 
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="19" />
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
+    <uses-permission android:name="com.sonyericsson.extras.liveware.aef.EXTENSION_PERMISSION" />
+    <uses-permission android:name="com.sony.smarteyeglass.permission.SMARTEYEGLASS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
@@ -29,14 +35,57 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".ARCouponActivity"
             android:label="@string/title_activity_maps" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <service android:name="hack.dit.arcoupon.ARCouponExtensionService" />
+        <service android:name="com.sonyericsson.extras.liveware.extension.util.TunnelService" >
+            <intent-filter>
+                <action android:name="com.sonyericsson.extras.liveware.aef.tunnel.action.BIND" />
+            </intent-filter>
+        </service>
+
+
+        <receiver android:name="hack.dit.arcoupon.ARCouponExtensionReceiver" >
+            <intent-filter>
+
+                <!-- Generic extension intents. -->
+                <action android:name="com.sonyericsson.extras.liveware.aef.registration.EXTENSION_REGISTER_REQUEST" />
+                <action android:name="com.sonyericsson.extras.liveware.aef.registration.ACCESSORY_CONNECTION" />
+                <action android:name="android.intent.action.LOCALE_CHANGED" />
+
+                <!-- Notification intents -->
+                <action android:name="com.sonyericsson.extras.liveware.aef.notification.VIEW_EVENT_DETAIL" />
+                <action android:name="com.sonyericsson.extras.liveware.aef.notification.REFRESH_REQUEST" />
+
+                <!-- Widget intents -->
+                <action android:name="com.sonyericsson.extras.aef.widget.START_REFRESH_IMAGE_REQUEST" />
+                <action android:name="com.sonyericsson.extras.aef.widget.STOP_REFRESH_IMAGE_REQUEST" />
+                <action android:name="com.sonyericsson.extras.aef.widget.ONTOUCH" />
+                <action android:name="com.sonyericsson.extras.liveware.extension.util.widget.scheduled.refresh" />
+
+                <!-- Control intents -->
+                <action android:name="com.sonyericsson.extras.aef.control.START" />
+                <action android:name="com.sonyericsson.extras.aef.control.STOP" />
+                <action android:name="com.sonyericsson.extras.aef.control.PAUSE" />
+                <action android:name="com.sonyericsson.extras.aef.control.RESUME" />
+                <action android:name="com.sonyericsson.extras.aef.control.ERROR" />
+                <action android:name="com.sonyericsson.extras.aef.control.KEY_EVENT" />
+                <action android:name="com.sonyericsson.extras.aef.control.TOUCH_EVENT" />
+                <action android:name="com.sonyericsson.extras.aef.control.SWIPE_EVENT" />
+                <action android:name="com.sonyericsson.extras.aef.control.OBJECT_CLICK_EVENT" />
+                <action android:name="com.sonyericsson.extras.aef.control.MENU_ITEM_SELECTED" />
+
+
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

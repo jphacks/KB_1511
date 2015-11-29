@@ -1,7 +1,16 @@
 package hack.dit.arcoupon;
 
-import android.support.v4.app.FragmentActivity;
+import com.sonyericsson.extras.liveware.aef.registration.Registration;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,7 +21,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+/**
+ * Created by kiyomaru on 15/11/29.
+ */
+public class ARCouponActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -39,5 +51,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Marker marker = mMap.addMarker(new MarkerOptions().position(location).title("お店の名前").snippet("クーポンの内容"));
         // インフォウィンドウ表示
         marker.showInfoWindow();
+    }
+
+    /**
+     *  Start the app with the message "Hello SmartEyeglass"
+     */
+    public void startExtension() {
+        // Check ExtensionService is ready and referenced
+        if (ARCouponExtensionService.Object != null) {
+            ARCouponExtensionService.Object
+                    .sendMessageToExtension("Hello SmartEyeglass");
+        }
     }
 }
